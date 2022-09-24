@@ -9,7 +9,7 @@ namespace Cloud5mins.domain
 {
     public static class Utility
     {
-        private const string ConversionCode = "y<3c$9^hv%,%s5FHC]0VU6xs!hoT5K?/#KdS)X\}*]@Kb(]z)b5O:6SF5\/KkVxd";
+        private const string ConversionCode = @"y<3c$9^hv%,%s5FHC]0VU6xs!hoT5K?/#KdS)X}*]@Kb(]z)b5O:6SF5\KkVxard";
         private static readonly int Base = ConversionCode.Length;
         //sets the length of the unique code to add to vanity
         private const int MinVanityCodeLength = 5;
