@@ -9,8 +9,7 @@ namespace Cloud5mins.domain
 {
     public static class Utility
     {
-        //reshuffled for randomisation, same unique characters just jumbled up, you can replace with your own version
-        private const string ConversionCode = "FjTG0s5dgWkbLf_8etOZqMzNhmp7u6lUJoXIDiQB9-wRxCKyrPcv4En3Y21aASHV";
+        private const string ConversionCode = "y<3c$9^hv%,%s5FHC]0VU6xs!hoT5K?/#KdS)X\}*]@Kb(]z)b5O:6SF5\/KkVxd";
         private static readonly int Base = ConversionCode.Length;
         //sets the length of the unique code to add to vanity
         private const int MinVanityCodeLength = 5;
@@ -80,16 +79,6 @@ namespace Cloud5mins.domain
             {
                 log.LogWarning("Request was not authenticated.");
                 return new UnauthorizedResult();
-            }
-
-            if (principal.FindFirst(ClaimTypes.GivenName) is null)
-            {
-                log.LogError("Claim not Found");
-                return new BadRequestObjectResult(new
-                {
-                    message = "Claim not Found",
-                    StatusCode = System.Net.HttpStatusCode.BadRequest
-                });
             }
             return null;
         }
