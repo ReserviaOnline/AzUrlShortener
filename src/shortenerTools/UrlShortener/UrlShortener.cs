@@ -136,7 +136,7 @@ namespace Cloud5mins.Function
             }
             catch (Exception ex)
             {
-                log.LogError(ex, "An unexpected error was encountered.");
+                log.LogError(ex, "An unexpected error was encountered: " + ex.ToString());
                 return new BadRequestObjectResult(new
                 {
                     message = ex.Message,
