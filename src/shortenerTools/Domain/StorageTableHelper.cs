@@ -3,17 +3,21 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos.Table;
+using Microsoft.Extensions.Logging;
 
 namespace Cloud5mins.domain
 {
 
     public class StorageTableHelper
     {
+        private readonly ILogger _log;
         private string StorageConnectionString { get; set; }
 
         public StorageTableHelper(){}
 
-        public StorageTableHelper(string storageConnectionString){
+        public StorageTableHelper(string storageConnectionString, ILogger log = null)
+        {
+            _log = log;
             StorageConnectionString = storageConnectionString;
         }
 
@@ -147,6 +151,8 @@ namespace Cloud5mins.domain
         public async Task<ShortUrlEntity> SaveShortUrlEntity(ShortUrlEntity newShortUrl)
         {
              TableOperation insOperation = TableOperation.InsertOrMerge(newShortUrl);
+             _log?.LogInformation("Saving ShortUrlEntity: " + insOperation.ToString());
+             _log?.LogInformation("Saving ShortUrlEntity: " + newShortUrl.ToString());
              TableResult result = await GetUrlsTable().ExecuteAsync(insOperation);
              ShortUrlEntity eShortUrl = result.Result as ShortUrlEntity;
              return eShortUrl;
